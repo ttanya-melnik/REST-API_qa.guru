@@ -39,8 +39,10 @@ public class LoginTests {
   @Test
   void successfulLoginTest() {
     String authData = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}";
+    String apiKey = "reqres_01b6fbde581f4ce3be4ec935facf4736";
 
     given()
+        .header("x-api-key", apiKey)
         .body(authData)
         .contentType(JSON)
         .log().uri()
@@ -58,10 +60,12 @@ public class LoginTests {
   // Негативный тест. Отправляет пустое тело → ожидает 400 и ошибку "Missing email or username"
   @Test
   void unsuccessfulLogin400Test() {
-    String authData = "";
+    String authData = "reqres_01b6fbde581f4ce3be4ec935facf4736";
+    String apiKey = "reqres_01b6fbde581f4ce3be4ec935facf4736";
 
     given()
-        .body(authData)
+        .header("x-api-key", apiKey)
+        .auth().oauth2(authData)
         .log().uri()
 
         .when()
@@ -79,8 +83,10 @@ public class LoginTests {
   @Test
   void userNotFoundTest() {
     String authData = "{\"email\": \"eveasdas.holt@reqres.in\", \"password\": \"cda\"}";
+    String apiKey = "reqres_01b6fbde581f4ce3be4ec935facf4736";
 
     given()
+        .header("x-api-key", apiKey)
         .body(authData)
         .contentType(JSON)
         .log().uri()
@@ -100,8 +106,11 @@ public class LoginTests {
   @Test
   void missingPasswordTest() {
     String authData = "{\"email\": \"eveasdas.holt@reqres.in\"}";
+    String apiKey = "reqres_01b6fbde581f4ce3be4ec935facf4736";
+
 
     given()
+        .header("x-api-key", apiKey)
         .body(authData)
         .contentType(JSON)
         .log().uri()
@@ -122,8 +131,10 @@ public class LoginTests {
   @Test
   void missingLoginTest() {
     String authData = "{\"password\": \"cda\"}";
+    String apiKey = "reqres_01b6fbde581f4ce3be4ec935facf4736";
 
     given()
+        .header("x-api-key", apiKey)
         .body(authData)
         .contentType(JSON)
         .log().uri()
@@ -143,8 +154,9 @@ public class LoginTests {
   @Test
   void wrongBodyTest() {
     String authData = "%}";
-
+    String apiKey = "reqres_01b6fbde581f4ce3be4ec935facf4736";
     given()
+        .header("x-api-key", apiKey)
         .body(authData)
         .contentType(JSON)
         .log().uri()
@@ -162,7 +174,9 @@ public class LoginTests {
   // Отправляет POST безContent-Type: application/json → ожидает 415 (Unsupported Media Type)
   @Test
   void unsuccessfulLogin415Test() {
+    String apiKey = "reqres_01b6fbde581f4ce3be4ec935facf4736";
     given()
+        .header("x-api-key", apiKey)
         .log().uri()
         .post("https://reqres.in/api/login")
         .then()
