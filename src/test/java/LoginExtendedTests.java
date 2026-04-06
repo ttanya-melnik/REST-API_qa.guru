@@ -232,7 +232,6 @@ public class LoginExtendedTests {
 
     LoginResponseLombokModel response = step("Make request", ()->
         given()
-           // .filter(withCustomTemplates())
             .header("x-api-key", apiKey)
             .log().uri()
             .log().body()
@@ -267,6 +266,7 @@ public class LoginExtendedTests {
 
     LoginResponseLombokModel response = step("Make request", ()->
        given(loginRequestSpec)
+           .header("x-api-key", apiKey)
             .body(authData)
 
             .when()
