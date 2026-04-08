@@ -60,7 +60,12 @@ public class LoginExtendedTests {
    проверка через Hamcrest */
   @Test
   void successfulLoginBadPracticeTest() {
-    String authData = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}";
+    String authData = """
+        {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+        }
+        """;
     String apiKey = "reqres_01b6fbde581f4ce3be4ec935facf4736";
 
 
