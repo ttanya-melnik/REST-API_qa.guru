@@ -235,7 +235,7 @@ public class LoginExtendedTests {
             .header("x-api-key", apiKey)
             .log().uri()
             .log().body()
-            .log().headers()
+            .log().headers() 
             .body(authData)
             .contentType(JSON)
 
