@@ -33,6 +33,7 @@ dependencies {
             "io.rest-assured:rest-assured:$restAssuredVersion",
             "io.rest-assured:json-schema-validator:$restAssuredVersion",
             "io.qameta.allure:allure-rest-assured:$allureVersion",
+            "com.codeborne:selenide:7.15.1",
             "org.junit.jupiter:junit-jupiter:6.0.2",
             "org.slf4j:slf4j-simple:2.0.17"
          //   'org.assertj:assertj-core:3.27.7'
@@ -42,9 +43,16 @@ dependencies {
 
 }
 
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+
 tasks.withType(Test) {
     useJUnitPlatform()
-
+    systemProperties(System.getProperties())
 
     testLogging {
         lifecycle {
