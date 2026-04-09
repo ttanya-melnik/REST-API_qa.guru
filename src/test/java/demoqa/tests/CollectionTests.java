@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.is;
 
 public class CollectionTests extends TestBase {
 
-
+// Авторизация пользователя, очистка коллекции книг в корзине, добавление новой книги, проверка в интерфейсе
   @Test
   void addBookToCollectionTest() {
     String authData = """
