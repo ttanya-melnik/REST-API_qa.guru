@@ -91,7 +91,7 @@ public class CollectionTests extends TestBase {
 
 
 
-// Тест на удаление товара из корзины (204)
+// Авторизация пользователя, удаление товара из корзины (204)
   @Test
   void addBookToCollection_withDelete1Book_Test() {
     String authData = "{\"userName\":\"" + login + "\",\"password\":\"" + password + "\"}";
@@ -156,7 +156,7 @@ public class CollectionTests extends TestBase {
 
 
 
-// Негативный тест (добавили товар в корзину, который уже добавлен ранее 400)
+// Негативный тест (авторизовались, добавили товар в корзину, который уже добавлен ранее 400)
 @Test
 void negative400BookToCollectionTest() {
   String authData = """
